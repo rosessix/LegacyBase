@@ -1,0 +1,13 @@
+{
+    "Lua.diagnostics.disable": [
+        "undefined-global"
+    ],
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.diagnostics.globals": [
+        "ngx"
+    ],
+    "Lua.workspace.library": [
+        "${3rd}/OpenResty/library"
+    ],
+    "Lua.workspace.checkThirdParty": false
+}

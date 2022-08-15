@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    overflow-y: hidden;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+:root {
+    --background-color: #222831;
+    --button-color: #395B64;
+    --button-text: white;
+
+    --character-color: #393E46;
+}
+
+#appcontainer {
+    width: 100vw;
+    height: 100vh;
+    background: var(--background-color);
+    color: white;
+}
+
+#welcome {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.servername {
+    top: 2vh;
+    height: 6vh;
+
+    text-shadow: 0px 0px 10px black;
+
+    text-align: center;
+    /* uppercase */
+}
+
+.button {
+    width: 4vw;
+    height: 4vw;
+
+    /* glow */
+    border: none;
+
+    background-color: var(--button-color);
+    color: var(--button-text);
+    transform: rotate(45deg);
+    transition: bottom 0.7s, background-color 0.3s;
+    box-shadow: 0px 0px 10px black;
+    overflow: auto;
+}
+
+.button:active {
+    margin-top: 10px;
+}
+
+.button > div {
+    transform: rotate(-45deg);
+    /* align center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.button > p {
+    transform: rotate(-45deg);
+    /* align center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    margin-bottom: 0 !important;
+}
+
+.button:hover {
+    background-color: var(--button-text);
+    color: var(--button-color);
+}
+
+.welcomebutton {
+    position: absolute;
+    bottom: 5%;
+}
+
+#welcomebutton {
+    /* transition: bottom 0.7s; */
+}
+
+#characters {
+    position: absolute;
+    /* make a grid with 3 boxes, take up 30vw each */
+    display: grid;
+    grid-template-columns: repeat(3, 25vw);
+    grid-gap: 1vw;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+#characters > div {
+    /* border: 1px solid black; */
+    height: 40vh;
+    background-color: var(--character-color);
+    border-radius: 2px;
+    box-shadow: -1px 5px 5px rgba(0, 0, 0, 0.623);
+
+}
+
+.character-name {
+    top: 2vh;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.char-info {
+    /* color: white; */
+    /* text-align: center; */
+    width: 80%;
+    margin-left: 10%;
+    font-size: 1.5rem;
+}
+
+.info-item {
+    /* border: 2px dotted white; */
+    background-color: #3A3845;
+    border-radius: 2px;
+    /* drop shadow */
+    box-shadow: 0px 3px 0px black;
+    padding: 0.5rem;
+    margin-bottom: 1vh;
+}
+
+.char-actions {
+    position: relative;
+    /* margin-top: 5vh; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+}
+
+.animated {
+    bottom: -15% !important;
+}
+
+.createchar {
+    position: absolute;
+    bottom: 5%;
+    overflow: hidden;
+    /* transition: bottom 0.7s ease-in-out;     */
+}
+
+.createchar > p {
+    font-size: 2rem;
+}
+
+.createchar-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.createchar-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.createchar-form {
+    /* color: white !important; */
+    width: 50%;
+    height: 50%;
+    background-color: var(--button-color);
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert {
+    /* align center */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+}

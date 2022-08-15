@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+
+    <!-- link to style.css -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <title>lg-login</title>
+</head>
+<body>
+    <div id="app" data-app>
+
+        <v-app id='appcontainer' v-show="show">
+            <v-main>
+                <h1 class="servername">LegacyBase</h1>
+
+                <v-alert class="alert" v-show="error" elevation="15" type="error">{{errorMsg}}</v-alert>
+
+                <div id="welcome">
+                    <button id="welcomebutton" class="button welcomebutton" @click="changePage('chars')"><div><i class="fas fa-play"></i></div></button>
+                </div>
+
+                <div id="characters" v-show="page == 'chars'">
+                    <div id="character" v-for="item in characters">
+                        <div class="character-name">{{item.firstname}} {{item.lastname}}</div>
+
+                        <div class="char-info">
+                            <div class="info-item">
+                                <span><i class="fas fa-money-bill-wave"></i></span>
+                                <span class="info-text">{{item.cash}}</span>
+                            </div>
+                            <div class="info-item">
+                                <span><i class="fas fa-university"></i></span>
+                                <span class="info-text">{{item.balance}}</span>
+                            </div>
+                            <div class="info-item">
+                                <span><i class="fas fa-suitcase"></i></span>
+                                <!-- <span class="info-text">{{item.job}}</span> -->
+                                <span class="info-text" v-if="item.job !== undefined">{{item.job}}</span>
+                                <span class="info-text" v-if="item.job == undefined">Arbejdsløs</span>
+                            </div>
+                        </div>
+
+                        <div class="char-actions">
+                            <button class="button" @click="chooseCharacter(item)"><p>Vælg</p></button>
+                            <button class="button" @click="deleteCharacter(item)"><p>Slet</p></button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="createchar-container">
+                    <button id="createchar" class="button createchar animated" @click="creatingChar = !creatingChar"><p>+</p></button>
+                </div>
+                <v-dialog v-model="creatingChar" max-width="500px">
+                    <v-card>
+                        <v-progress-linear indeterminate></v-progress-linear>
+                        <v-card-title>Opret karakter</v-card-title>
+                        <v-card-text class="text-h5 font-weight-bold">
+                            <v-text-field label="Navn" v-model="firstnameInput" outlined></v-text-field>
+                            <v-text-field label="Efternavn" v-model="lastnameInput" outlined></v-text-field>
+                            Fødselsdag <input type="date" id="birthday">
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text @click="creatingChar = false">Annuler</v-btn>
+                            <v-btn text @click="createChar()">Opret</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+
+                <v-dialog v-model="deletingCharacters" max-width="500px">
+                    <v-card>
+                        <v-progress-linear indeterminate></v-progress-linear>
+                        <v-card-title style="text-align: center;">Er du sikker på at du vil slette {{deletingChar.firstname}} {{deletingChar.lastname}}?</v-card-title>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text @click="deletingCharacters = !deletingCharacters">Annuler</v-btn>
+                            <v-btn style="background-color: red; color: white;" @click="deleteChar()">SLET</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-main>
+        </v-app>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
