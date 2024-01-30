@@ -32,11 +32,6 @@ const app = new Vue({
             this.page = page
         },
 
-        chooseCharacter: function (item) {
-            let id = item.id
-            $.post('https://lg-login/chooseCharacter', id)
-        },
-
         deleteCharacter: function (item) {
             this.deletingCharacters = true
             this.deletingChar = item
